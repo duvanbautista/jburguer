@@ -47,3 +47,6 @@ next-env.d.ts
 # Documentación privada de la propuesta: no se publica
 docs/
 !.env.example
+
+.vercel
+.env*
