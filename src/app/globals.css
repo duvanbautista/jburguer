@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+/* ═════════════════════════════════════════════════════════════════════════
+   Sistema de temas: oscuro (por defecto), claro y automático.
+
+   - Sin atributo data-theme  → sigue la preferencia del sistema (automático).
+   - <html data-theme="dark"> → oscuro forzado.
+   - <html data-theme="light">→ claro forzado.
+
+   Los componentes usan SOLO tokens semánticos (bg-bg, text-fg, border-line,
+   bg-glass, text-brand…). Nunca colores fijos como text-white o bg-black/40,
+   salvo sobre fotografías (viñetas), donde el texto siempre es blanco.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* ───────────── Paleta oscura (valor por defecto) ───────────── */
+:root {
+  color-scheme: dark;
+
+  --t-bg: #0a0a0d;
+  --t-bg-elevated: #101014;
+  --t-surface: #131318;
+  --t-surface-2: #1b1b22;
+  --t-fg: #ffffff;
+  --t-fg-muted: #a1a1aa;
+  --t-fg-subtle: #71717a;
+  --t-line: rgb(255 255 255 / 0.1);
+  --t-line-strong: rgb(255 255 255 / 0.18);
+  --t-glass: rgb(0 0 0 / 0.4);
+  --t-glass-strong: rgb(0 0 0 / 0.7);
+  --t-soft: rgb(255 255 255 / 0.06);
+  --t-soft-2: rgb(255 255 255 / 0.12);
+  --t-brand: #ff7a1a;
+  --t-brand-soft: #ff9a4d;
+  --t-brand-deep: #d95f08;
+  --t-brand-text: #ffa25c;
+  --t-gold: #ffd23f;
+  --t-ember: #e0312b;
+  --t-success: #4ade80;
+  --t-danger: #f87171;
+  --t-glow-1: rgb(255 122 26 / 0.16);
+  --t-glow-2: rgb(224 49 43 / 0.1);
+  --t-shadow-card: 0 20px 60px -20px rgb(0 0 0 / 0.8);
+  --t-shadow-glow: 0 0 0 1px rgb(255 122 26 / 0.35), 0 10px 40px -10px rgb(255 122 26 / 0.55);
+  --t-skeleton-a: rgb(255 255 255 / 0.04);
+  --t-skeleton-b: rgb(255 255 255 / 0.1);
+}
+
+/* ───────────── Paleta clara ─────────────
+   Sin @layer a propósito: las declaraciones sin capa ganan a las de @layer,
+   así que deben estar al mismo nivel que la paleta oscura para poder sobreescribirla. */
+  :root[data-theme="light"] {
+    color-scheme: light;
+
+    --t-bg: #f7f4ee;
+    --t-bg-elevated: #fffdf9;
+    --t-surface: #ffffff;
+    --t-surface-2: #f1ece3;
+    --t-fg: #15130f;
+    --t-fg-muted: #5f5a51;
+    --t-fg-subtle: #8a8378;
+    --t-line: rgb(21 19 15 / 0.1);
+    --t-line-strong: rgb(21 19 15 / 0.18);
+    --t-glass: rgb(255 255 255 / 0.62);
+    --t-glass-strong: rgb(255 255 255 / 0.85);
+    --t-soft: rgb(21 19 15 / 0.05);
+    --t-soft-2: rgb(21 19 15 / 0.09);
+    --t-brand: #ea6a0e;
+    --t-brand-soft: #ff8a33;
+    --t-brand-deep: #c4530a;
+    --t-brand-text: #b84f0a;
+    --t-gold: #d9a400;
+    --t-ember: #c92a25;
+    --t-success: #16a34a;
+    --t-danger: #dc2626;
+    --t-glow-1: rgb(255 122 26 / 0.22);
+    --t-glow-2: rgb(224 49 43 / 0.1);
+    --t-shadow-card: 0 20px 50px -24px rgb(60 40 10 / 0.35);
+    --t-shadow-glow: 0 0 0 1px rgb(234 106 14 / 0.3), 0 10px 32px -12px rgb(234 106 14 / 0.45);
+    --t-skeleton-a: rgb(21 19 15 / 0.05);
+    --t-skeleton-b: rgb(21 19 15 / 0.1);
+  }
+
+  /* Automático: si el sistema prefiere claro y no hay tema forzado. */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      color-scheme: light;
+
+      --t-bg: #f7f4ee;
+      --t-bg-elevated: #fffdf9;
+      --t-surface: #ffffff;
+      --t-surface-2: #f1ece3;
+      --t-fg: #15130f;
+      --t-fg-muted: #5f5a51;
+      --t-fg-subtle: #8a8378;
+      --t-line: rgb(21 19 15 / 0.1);
+      --t-line-strong: rgb(21 19 15 / 0.18);
+      --t-glass: rgb(255 255 255 / 0.62);
+      --t-glass-strong: rgb(255 255 255 / 0.85);
+      --t-soft: rgb(21 19 15 / 0.05);
+      --t-soft-2: rgb(21 19 15 / 0.09);
+      --t-brand: #ea6a0e;
+      --t-brand-soft: #ff8a33;
+      --t-brand-deep: #c4530a;
+      --t-brand-text: #b84f0a;
+      --t-gold: #d9a400;
+      --t-ember: #c92a25;
+      --t-success: #16a34a;
+      --t-danger: #dc2626;
+      --t-glow-1: rgb(255 122 26 / 0.22);
+      --t-glow-2: rgb(224 49 43 / 0.1);
+      --t-shadow-card: 0 20px 50px -24px rgb(60 40 10 / 0.35);
+      --t-shadow-glow: 0 0 0 1px rgb(234 106 14 / 0.3), 0 10px 32px -12px rgb(234 106 14 / 0.45);
+      --t-skeleton-a: rgb(21 19 15 / 0.05);
+      --t-skeleton-b: rgb(21 19 15 / 0.1);
+    }
+  }
+
+/* ───────────── Variantes dark: / light: que respetan data-theme y el sistema ─────────────
+   Úsalas solo cuando un token semántico no baste (p. ej. tonos de badges). */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not([data-theme="light"]):not([data-theme="light"] *)) {
+      @slot;
+    }
+  }
+}
+
+@custom-variant light {
+  &:where([data-theme="light"], [data-theme="light"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: light) {
+    &:where(:not([data-theme="dark"]):not([data-theme="dark"] *)) {
+      @slot;
+    }
+  }
+}
+
+/* ───────────── Tokens de Tailwind (referencian las variables en runtime) ───────────── */
+@theme inline {
+  --color-bg: var(--t-bg);
+  --color-bg-elevated: var(--t-bg-elevated);
+  --color-surface: var(--t-surface);
+  --color-surface-2: var(--t-surface-2);
+  --color-fg: var(--t-fg);
+  --color-fg-muted: var(--t-fg-muted);
+  --color-fg-subtle: var(--t-fg-subtle);
+  --color-line: var(--t-line);
+  --color-line-strong: var(--t-line-strong);
+  --color-glass: var(--t-glass);
+  --color-glass-strong: var(--t-glass-strong);
+  --color-soft: var(--t-soft);
+  --color-soft-2: var(--t-soft-2);
+  --color-brand: var(--t-brand);
+  --color-brand-soft: var(--t-brand-soft);
+  --color-brand-deep: var(--t-brand-deep);
+  --color-brand-text: var(--t-brand-text);
+  --color-gold: var(--t-gold);
+  --color-ember: var(--t-ember);
+  --color-success: var(--t-success);
+  --color-danger: var(--t-danger);
+
+  --shadow-glow: var(--t-shadow-glow);
+  --shadow-card: var(--t-shadow-card);
+}
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --animate-pop: pop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.35);
+  --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
+  --animate-heart-burst: heart-burst 0.7s ease-out;
+  --animate-float-up: float-up 1.1s ease-out forwards;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+  --animate-fade-in: fade-in 0.5s ease-out both;
+
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+      color: inherit;
+    }
+    35% {
+      transform: scale(1.35);
+      color: var(--t-gold);
+    }
+    100% {
+      transform: scale(1);
+      color: inherit;
+    }
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(74 222 128 / 0.6);
+    }
+    60% {
+      box-shadow: 0 0 0 7px rgb(74 222 128 / 0);
+    }
+  }
+
+  @keyframes heart-burst {
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(1.5);
+    }
+    55% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float-up {
+    0% {
+      opacity: 0;
+      transform: translateY(0) scale(0.8);
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-2.5rem) scale(1.1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--t-bg);
+    background-image:
+      radial-gradient(70% 45% at 50% -8%, var(--t-glow-1), transparent 65%),
+      radial-gradient(45% 30% at 85% 0%, var(--t-glow-2), transparent 70%);
+    background-repeat: no-repeat;
+    color: var(--t-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+
+  ::selection {
+    background: rgb(255 122 26 / 0.45);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--t-gold);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Sombra de texto suave para leer sobre fotos y vidrio oscuro (siempre texto blanco). */
+@utility text-glow {
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.7),
+    0 2px 14px rgb(0 0 0 / 0.45);
+}
+
+/* Banda de vidrio que sigue al tema (paneles, cabecera, tarjetas de contenido). */
+@utility glass {
+  background-color: var(--t-glass);
+  border: 1px solid var(--t-line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Vidrio SIEMPRE oscuro: para bandas sobre fotografías (viñetas), en ambos temas. */
+@utility glass-photo {
+  background-color: rgb(0 0 0 / 0.42);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #fff;
+}
+
+/* Esqueleto de carga con brillo. */
+@utility skeleton {
+  background: linear-gradient(100deg, var(--t-skeleton-a) 30%, var(--t-skeleton-b) 50%, var(--t-skeleton-a) 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* Titular con degradado ámbar → amarillo (en claro se oscurece un poco para contraste). */
+@utility text-brand-gradient {
+  background-image: linear-gradient(92deg, var(--t-gold) 0%, var(--t-brand-soft) 45%, var(--t-brand) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
